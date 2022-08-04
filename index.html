@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Random Quotes</title>
+</head>
+    <script>
+        window.onload = init;
+        function init(){
+            getQuote();
+        }
+
+        function getQuote(){
+            let randomNumber = Math.floor(Math.random() * quotesArray.length);
+            console.log(randomNumber);
+
+            document.getElementById("text").innerText = "''" + quotesArray[randomNumber].quote + "''";
+            document.getElementById("author").innerText = " - " + quotesArray[randomNumber].author;
+
+            let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="
+
+            let addedQuote = quotesArray[randomNumber].quote.replace(/ /g, "%20");
+            twitterLink += "''" + addedQuote;
+            
+            let addedAuthor = quotesArray[randomNumber].author.replace(/ /g, "%20");
+            twitterLink +="''" +  " - " + addedAuthor;
+
+            document.getElementById("tweet-quote").href = twitterLink;
+            console.log(twitterLink);
+        }
+
+    </script>
+<body>
+    <div class="container" id="container">
+        <div id="text"></div>
+        <div id="author"></div>
+        <button onclick="getQuote()" class="buttonClass">New Quote</button>
+        <a href="#" id="tweet-quote" class="aClass" target="_blank" style="background-color: rgb(27, 172, 177)">Tweet Quote</a>
+    </div>
+    <script src="quotes.js"></script>
+</body>
+</html>
